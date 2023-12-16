@@ -1,46 +1,48 @@
-const srcImage = (value) => `./asset/images/${value}.png`
-
-const arrLinksImages = [
-    srcImage("bootstrap"),
-    srcImage("css"),
-    srcImage("electron"),
-    srcImage("firebase"),
-    srcImage("html"),
-    srcImage("javascript"),
-    srcImage("jquery"),
-    srcImage("mongo"),
-    srcImage("node"),
-    srcImage("react"),
-]
-
 
 window.onload = () => {
     const squares = document.querySelectorAll(".square")
-    createSquare.bind(squares)()
+    setImageInSquare.bind(squares)()
 
 }
 
-function createSquare() {
+//INSERINDO AS IMAGENS NO NOS QUADRADOS EM POSICIONAMENTO DIFERENTE A CADA RELOAD
+function setImageInSquare() {
+    const arr = links()
+    for (let idx = 0; idx < this.length; idx++) {
+        this[idx].id = arr[idx].id
+        this[idx].innerHTML = `<img src="${arr[idx].src}">`
+    }
 }
 
-
-
-function geratorNumber() {
-    const arrOne = []
-    const arrTwo = []
-    const loop = function () {
-        while (this.length < 10) {
-            const num = Math.floor(Math.random() * 10)
-            if (this.indexOf(num) == -1) {
-                this.push(num)
-            }
+//CRIACÃO DOS LINKS DAS IMGENS
+const srcImage = (value) => {
+    return {
+        id: value,
+        src: `./asset/images/image-0${value}.png`,
+    }
+}
+const loop = function () {
+    while (this.length < 10) {
+        const num = Math.floor(Math.random() * 10)
+        if (this.indexOf(num) == -1) {
+            this.push(num)
         }
     }
+}
+function links() {
+    const image = []
+    const arrOne = []
+    const arrTwo = []
     loop.bind(arrOne)()
     loop.bind(arrTwo)()
-    return [...arrOne, ...arrTwo]
+    const all = [...arrOne, ...arrTwo]
+    all.forEach(idx => {
+        image.push(srcImage(idx))
+    })
+    return image
 }
 
+// REVELAR AS IMAGENS E CHECAR
 
 
 

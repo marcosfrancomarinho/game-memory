@@ -49,6 +49,9 @@ body {
     cursor: pointer;
 }
 
+
+
+
 .show {
     animation: show-animate 0.4s both;
     background-color: var(--raisin-black);
