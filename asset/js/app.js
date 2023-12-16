@@ -2,7 +2,7 @@
 window.onload = () => {
     const squares = document.querySelectorAll(".square")
     setImageInSquare.bind(squares)()
-
+    show.bind(squares)()
 }
 
 //INSERINDO AS IMAGENS NO NOS QUADRADOS EM POSICIONAMENTO DIFERENTE A CADA RELOAD
@@ -10,7 +10,7 @@ function setImageInSquare() {
     const arr = links()
     for (let idx = 0; idx < this.length; idx++) {
         this[idx].id = arr[idx].id
-        this[idx].innerHTML = `<img src="${arr[idx].src}">`
+        this[idx].children[0].src = arr[idx].src
     }
 }
 
@@ -43,6 +43,15 @@ function links() {
 }
 
 // REVELAR AS IMAGENS E CHECAR
-
+function show() {
+    this.forEach(elm => {
+        elm.addEventListener("click", function () {
+            this.classList.add("show")
+            setTimeout(() => {
+                this.children[0].style.display = "block"
+            }, 150)
+        })
+    })
+}
 
 

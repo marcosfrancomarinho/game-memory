@@ -49,9 +49,6 @@ body {
     cursor: pointer;
 }
 
-
-
-
 .show {
     animation: show-animate 0.4s both;
     background-color: var(--raisin-black);
@@ -59,10 +56,16 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.image {
+    display: none;
+}
+
 @keyframes show-animate {
     from {
         transform: rotate3d(0, 0, 0, 0);
     }
+
     to {
         transform: rotate3d(0, 1, 0, 180deg);
     }
