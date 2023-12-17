@@ -1,3 +1,11 @@
+let counter = 0
+const game = [
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+]
 
 window.onload = () => {
     const squares = document.querySelectorAll(".square")
