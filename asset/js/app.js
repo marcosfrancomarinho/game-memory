@@ -1,12 +1,11 @@
 let counter = 0
 const game = [
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0,
+    null, null, null, null,
+    null, null, null, null,
+    null, null, null, null,
+    null, null, null, null,
+    null, null, null, null,
 ]
-
 window.onload = () => {
     const squares = document.querySelectorAll(".square")
     setImageInSquare.bind(squares)()
@@ -17,18 +16,20 @@ window.onload = () => {
 function setImageInSquare() {
     const arr = links()
     for (let idx = 0; idx < this.length; idx++) {
-        this[idx].id = arr[idx].id
         this[idx].children[0].src = arr[idx].src
+        this[idx].setAttribute("data-num", idx)
+        this[idx].setAttribute("data-value", arr[idx].value)
     }
 }
 
 //CRIACÃO DOS LINKS DAS IMGENS
 const srcImage = (value) => {
     return {
-        id: value,
         src: `./asset/images/image-0${value}.png`,
+        value: value
     }
 }
+
 const loop = function () {
     while (this.length < 10) {
         const num = Math.floor(Math.random() * 10)
@@ -56,10 +57,18 @@ function show() {
         elm.addEventListener("click", function () {
             this.classList.add("show")
             setTimeout(() => {
+                this.classList.remove("hide")
                 this.children[0].style.display = "block"
-            }, 150)
+                game[this.dataset.num] = this.dataset.value
+            }, 200)
+            setTimeout(() => {
+                this.children[0].style.display = "none"
+                this.classList.remove("show")
+                this.classList.add("hide")
+            }, 1000)
         })
     })
 }
+
 
 
