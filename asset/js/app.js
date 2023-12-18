@@ -56,8 +56,8 @@ function show() {
     this.forEach(elm => {
         elm.addEventListener("click", function () {
             this.classList.add("show")
+            this.classList.remove("hide")
             setTimeout(() => {
-                this.classList.remove("hide")
                 this.children[0].style.display = "block"
                 game[this.dataset.num] = this.dataset.value
             }, 200)
@@ -65,7 +65,7 @@ function show() {
                 this.children[0].style.display = "none"
                 this.classList.remove("show")
                 this.classList.add("hide")
-            }, 1000)
+            }, 1100)
         })
     })
 }
