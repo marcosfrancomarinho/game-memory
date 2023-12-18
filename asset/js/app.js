@@ -12,7 +12,7 @@ window.onload = () => {
     show.bind(squares)()
 }
 
-//INSERINDO AS IMAGENS NO NOS QUADRADOS EM POSICIONAMENTO DIFERENTE A CADA RELOAD
+//INSERINDO AS IMAGENS NO NOS QUADRADOS DD JOGO
 function setImageInSquare() {
     const arr = links()
     for (let idx = 0; idx < this.length; idx++) {
@@ -22,7 +22,7 @@ function setImageInSquare() {
     }
 }
 
-//CRIACÃO DOS LINKS DAS IMGENS
+//CRIACÃO DOS LINKS DAS IMGENS EM POSIÇÃO ALEATORIAS
 const srcImage = (value) => {
     return {
         src: `./asset/images/image-0${value}.png`,
@@ -51,7 +51,7 @@ function links() {
     return image
 }
 
-// REVELAR AS IMAGENS E CHECAR
+// REVELAR AS IMAGENS
 function show() {
     this.forEach(elm => {
         elm.addEventListener("click", function () {
@@ -69,6 +69,10 @@ function show() {
         })
     })
 }
+//VERIFICAÇÃO IMAGENS IGUAIS
 
+function verfication() {
+
+}
 
 
