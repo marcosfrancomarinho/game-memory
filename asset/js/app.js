@@ -7,7 +7,7 @@ window.onload = () => {
     show.bind(squares)()
 }
 
-//INSERINDO DATASET NO NOS QUADRADOS DD JOGO
+//INSERINDO DATASET (INFO) NO NOS QUADRADOS DO JOGO
 function setInfoSquare() {
     const arr = links()
     for (let idx = 0; idx < this.length; idx++) {
@@ -16,11 +16,12 @@ function setInfoSquare() {
     }
 }
 
-//CRIACÃO DOS LINKS DAS IMGENS EM POSIÇÃO ALEATORIAS
+//CRIACÃO DOS LINKS DAS IMAGENS EM POSIÇÃO ALEATORIAS
 const srcImage = (value) => {
     return {
-        src: `./asset/images/image-0${value}.png`,
-        value: value
+        src: `<img src ='./asset/images/image-0${value}.png'>`,
+        value: value,
+        icon: "&#9763"
     }
 }
 
@@ -48,19 +49,18 @@ function links() {
 // REVELAR AS IMAGENS
 function show() {
     const arr = this
-    const filter = []
     this.forEach(elm => {
         elm.addEventListener("click", function () {
+            this.classList.remove("hide")
             this.classList.add("show")
-            this.innerHTML = `<img src = "${srcImage(this.dataset.value).src}">`
-            if (counter % 2 == 0) {
-                first = this.dataset.value
-            } else {
-                second = this.dataset.value
-            }
-            counter++
+            setTimeout(() => {
+                this.innerHTML = srcImage(this.dataset.value).src
+            }, 200)
+            setTimeout(() => {
+                this.classList.remove("show")
+                this.classList.add("hide")
+                this.innerHTML = srcImage(undefined).icon
+            }, 1500)
         })
     })
 }
-
-
