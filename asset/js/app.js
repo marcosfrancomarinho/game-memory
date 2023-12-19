@@ -1,22 +1,16 @@
 let counter = 0
-const game = [
-    null, null, null, null,
-    null, null, null, null,
-    null, null, null, null,
-    null, null, null, null,
-    null, null, null, null,
-]
+let first = null
+let second = null
 window.onload = () => {
     const squares = document.querySelectorAll(".square")
-    setImageInSquare.bind(squares)()
+    setInfoSquare.bind(squares)()
     show.bind(squares)()
 }
 
-//INSERINDO AS IMAGENS NO NOS QUADRADOS DD JOGO
-function setImageInSquare() {
+//INSERINDO DATASET NO NOS QUADRADOS DD JOGO
+function setInfoSquare() {
     const arr = links()
     for (let idx = 0; idx < this.length; idx++) {
-        this[idx].children[0].src = arr[idx].src
         this[idx].setAttribute("data-num", idx)
         this[idx].setAttribute("data-value", arr[idx].value)
     }
@@ -53,26 +47,20 @@ function links() {
 
 // REVELAR AS IMAGENS
 function show() {
+    const arr = this
+    const filter = []
     this.forEach(elm => {
         elm.addEventListener("click", function () {
             this.classList.add("show")
-            this.classList.remove("hide")
-            setTimeout(() => {
-                this.children[0].style.display = "block"
-                game[this.dataset.num] = this.dataset.value
-            }, 200)
-            setTimeout(() => {
-                this.children[0].style.display = "none"
-                this.classList.remove("show")
-                this.classList.add("hide")
-            }, 1100)
+            this.innerHTML = `<img src = "${srcImage(this.dataset.value).src}">`
+            if (counter % 2 == 0) {
+                first = this.dataset.value
+            } else {
+                second = this.dataset.value
+            }
+            counter++
         })
     })
-}
-//VERIFICAÇÃO IMAGENS IGUAIS
-
-function verfication() {
-
 }
 
 
