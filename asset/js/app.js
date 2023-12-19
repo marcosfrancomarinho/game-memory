@@ -1,6 +1,4 @@
 let counter = 0
-let first = null
-let second = null
 window.onload = () => {
     const squares = document.querySelectorAll(".square")
     setInfoSquare.bind(squares)()
@@ -24,7 +22,6 @@ const srcImage = (value) => {
         icon: "&#9763"
     }
 }
-
 const loop = function () {
     while (this.length < 10) {
         const num = Math.floor(Math.random() * 10)
@@ -47,20 +44,31 @@ function links() {
 }
 
 // REVELAR AS IMAGENS
-function show() {
-    const arr = this
-    this.forEach(elm => {
-        elm.addEventListener("click", function () {
-            this.classList.remove("hide")
-            this.classList.add("show")
-            setTimeout(() => {
-                this.innerHTML = srcImage(this.dataset.value).src
-            }, 200)
-            setTimeout(() => {
-                this.classList.remove("show")
-                this.classList.add("hide")
-                this.innerHTML = srcImage(undefined).icon
-            }, 1500)
-        })
-    })
+const show = function () {
+    this.forEach(elm => elm.addEventListener("click", turn))
+}
+function turn() {
+    const cards = document.querySelectorAll(".square")
+    this.removeEventListener("click", turn)
+    this.classList.add("show")
+    this.classList.remove("hide")
+    const turned = document.querySelectorAll(".show")
+    setTimeout(() => {
+        this.innerHTML = srcImage(this.dataset.value).src
+    }, 200)
+    if (counter == 1) {
+        cards.forEach(elm => elm.removeEventListener("click", turn))
+        setTimeout(() => {
+            turned[0].classList.remove("show")
+            turned[1].classList.remove("show")
+            turned[0].classList.add("hide")
+            turned[1].classList.add("hide")
+            turned[0].innerHTML = srcImage(undefined).icon
+            turned[1].innerHTML = srcImage(undefined).icon
+            cards.forEach(elm => elm.addEventListener("click", turn))
+        }, 1200)
+        counter = 0
+    } else {
+        counter++
+    }
 }
