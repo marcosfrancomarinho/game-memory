@@ -13,9 +13,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-flow: column;
+    background-color: var(--floral-white);
 }
 
-
+h1{
+    font-size: 30px;
+    margin: 0;
+    text-shadow: 1px 1px var(--raisin-black);
+    text-align: center;
+}
 .game-screen {
     display: flex;
     flex-direction: column;
@@ -64,6 +71,11 @@ body {
     animation: hide-animate 0.3s both;
 }
 
+.discovered {
+    background-color: var(--raisin-black);
+    animation: discovered-animate 0s both;
+}
+
 @keyframes show-animate {
     from {
         transform: rotate3d(0, 0, 0, 0);
@@ -77,6 +89,16 @@ body {
 }
 
 @keyframes hide-animate {
+    from {
+        transform: rotate3d(0, 0, 0, 0);
+    }
+
+    to {
+        transform: rotate3d(0, 1, 0, -180deg);
+    }
+}
+
+@keyframes discovered-animate {
     from {
         transform: rotate3d(0, 0, 0, 0);
     }

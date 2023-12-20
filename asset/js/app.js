@@ -58,15 +58,25 @@ function turn() {
     }, 200)
     if (counter == 1) {
         cards.forEach(elm => elm.removeEventListener("click", turn))
-        setTimeout(() => {
-            turned[0].classList.remove("show")
-            turned[1].classList.remove("show")
-            turned[0].classList.add("hide")
-            turned[1].classList.add("hide")
-            turned[0].innerHTML = srcImage(undefined).icon
-            turned[1].innerHTML = srcImage(undefined).icon
-            cards.forEach(elm => elm.addEventListener("click", turn))
-        }, 1200)
+        if (turned[0].dataset.value == turned[1].dataset.value) {
+            setTimeout(() => {
+                turned[0].classList.remove("show")
+                turned[1].classList.remove("show")
+                turned[0].classList.add("discovered")
+                turned[1].classList.add("discovered")
+                cards.forEach(elm => elm.addEventListener("click", turn))
+            }, 400)
+        } else {
+            setTimeout(() => {
+                turned[0].classList.remove("show")
+                turned[1].classList.remove("show")
+                turned[0].classList.add("hide")
+                turned[1].classList.add("hide")
+                turned[0].innerHTML = srcImage(undefined).icon
+                turned[1].innerHTML = srcImage(undefined).icon
+                cards.forEach(elm => elm.addEventListener("click", turn))
+            }, 1200)
+        }
         counter = 0
     } else {
         counter++
