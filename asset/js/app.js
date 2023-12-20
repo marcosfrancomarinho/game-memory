@@ -55,7 +55,7 @@ function turn() {
     const turned = document.querySelectorAll(".show")
     setTimeout(() => {
         this.innerHTML = srcImage(this.dataset.value).src
-    }, 200)
+    }, 300)
     if (counter == 1) {
         cards.forEach(elm => elm.removeEventListener("click", turn))
         if (turned[0].dataset.value == turned[1].dataset.value) {
