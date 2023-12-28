@@ -51,7 +51,7 @@ function turn() {
     this.removeEventListener("click", turn)
     setTimeout(() => {
         this.innerHTML = srcImage(this.dataset.value).src
-    },100)
+    }, 100)
     this.classList.add("show")
     this.classList.remove("hide")
     const turned = document.querySelectorAll(".show")
@@ -84,5 +84,12 @@ function turn() {
 // RESTART DO JOGO
 
 document.querySelector("button").onclick = () => {
-    
+    squares.forEach(elm => {
+        elm.classList.remove("show")
+        elm.classList.remove("hide")
+        elm.classList.remove("discovered")
+        elm.innerHTML = srcImage(undefined).icon
+        counter = 0
+        setInfoSquare.bind(squares)()
+    })
 }

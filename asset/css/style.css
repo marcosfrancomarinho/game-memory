@@ -17,12 +17,13 @@ body {
     background-color: var(--floral-white);
 }
 
-h1{
+h1 {
     font-size: 30px;
     margin: 0;
     text-shadow: 1px 1px var(--raisin-black);
     text-align: center;
 }
+
 .game-screen {
     display: flex;
     flex-direction: column;
@@ -75,8 +76,9 @@ h1{
     background-color: var(--raisin-black);
     animation: discovered-animate 0s both;
 }
-button{
-    position:fixed;
+
+button {
+    position: fixed;
     bottom: 20px;
     right: 10px;
     outline: none;
@@ -92,10 +94,12 @@ button{
     border-radius: 5px;
     transition: all 0.5s;
 }
-button:hover{
+
+button:hover {
     background-color: var(--penn-red);
     color: var(--floral-white);
 }
+
 @keyframes show-animate {
     from {
         transform: rotate3d(0, 0, 0, 0);
@@ -127,12 +131,37 @@ button:hover{
         transform: rotate3d(0, 1, 0, -180deg);
     }
 }
-@media screen and (max-width:600px){
-    .game-screen{
+
+@media screen and (max-width:700px) {
+    .game-screen {
         width: 100%;
     }
-    .square{
+
+    .line-square-01,
+    .line-square-02,
+    .line-square-03,
+    .line-square-04,
+    .line-square-05 {
+        gap: 5px;
         width: 100%;
+    }
+
+    .square {
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 20vw;
         height: 20vw;
+        font-size: 20vw;
+    }
+
+    .square img {
+        width: 100%;
+    }
+
+    button {
+        position: static;
+        font-size: 4vw;
+        width: 50%;
+        margin: auto;
     }
 }
