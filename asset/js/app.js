@@ -37,6 +37,7 @@ function links() {
     loop.bind(arrOne)()
     loop.bind(arrTwo)()
     const all = [...arrOne, ...arrTwo]
+    all.sort(() => Math.random() - 0.5)
     all.forEach(idx => {
         image.push(srcImage(idx))
     })
