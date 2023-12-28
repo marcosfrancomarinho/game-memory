@@ -52,8 +52,9 @@ function turn() {
     this.classList.add("show")
     this.classList.remove("hide")
     const turned = document.querySelectorAll(".show")
-    this.innerHTML = srcImage(this.dataset.value).src
-
+    setTimeout(() => {
+        this.innerHTML = srcImage(this.dataset.value).src
+    }, 50)
     if (counter == 1) {
         squares.forEach(elm => elm.removeEventListener("click", turn))
         if (turned[0].dataset.value == turned[1].dataset.value) {
@@ -83,5 +84,5 @@ function turn() {
 // RESTART DO JOGO
 
 document.querySelector("button").onclick = () => {
-
+    
 }
