@@ -49,12 +49,12 @@ const show = function () {
 }
 function turn() {
     this.removeEventListener("click", turn)
-    this.classList.add("show")
-    this.classList.remove("hide")
-    const turned = document.querySelectorAll(".show")
     setTimeout(() => {
         this.innerHTML = srcImage(this.dataset.value).src
     },100)
+    this.classList.add("show")
+    this.classList.remove("hide")
+    const turned = document.querySelectorAll(".show")
     if (counter == 1) {
         squares.forEach(elm => elm.removeEventListener("click", turn))
         if (turned[0].dataset.value == turned[1].dataset.value) {
