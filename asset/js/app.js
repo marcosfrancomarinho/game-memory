@@ -13,7 +13,6 @@ function setInfoSquare() {
         this[idx].setAttribute("data-value", arr[idx].value)
     }
 }
-
 //CRIACÃO DOS LINKS DAS IMAGENS EM POSIÇÃO ALEATORIAS
 const srcImage = (value) => {
     return {
@@ -48,6 +47,7 @@ function links() {
 const show = function () {
     this.forEach(elm => elm.addEventListener("click", turn))
 }
+
 function turn() {
     this.removeEventListener("click", turn)
     setTimeout(() => {
@@ -57,29 +57,39 @@ function turn() {
     this.classList.remove("hide")
     const turned = document.querySelectorAll(".show")
     if (counter == 1) {
-        squares.forEach(elm => elm.removeEventListener("click", turn))
-        if (turned[0].dataset.value == turned[1].dataset.value) {
+        addClick.bind(squares)(false)
+        if (turned[0].dataset.value === turned[1].dataset.value) {
             setTimeout(() => {
-                turned[0].classList.remove("show")
-                turned[1].classList.remove("show")
-                turned[0].classList.add("discovered")
-                turned[1].classList.add("discovered")
-                squares.forEach(elm => elm.addEventListener("click", turn))
+                addAndRemove.bind(turned)("show", false)
+                addAndRemove.bind(turned)("discovered", true)
+                addClick.bind(squares)(true)
             }, 400)
         } else {
             setTimeout(() => {
-                turned[0].classList.remove("show")
-                turned[1].classList.remove("show")
-                turned[0].classList.add("hide")
-                turned[1].classList.add("hide")
-                turned[0].innerHTML = srcImage(undefined).icon
-                turned[1].innerHTML = srcImage(undefined).icon
-                squares.forEach(elm => elm.addEventListener("click", turn))
+                addAndRemove.bind(turned)("show", false)
+                addAndRemove.bind(turned)("hide", true)
+                turned.forEach(elm => elm.innerHTML = srcImage(undefined).icon)
+                addClick.bind(squares)(true)
             }, 1200)
         }
         counter = 0
     } else {
         counter++
+    }
+    check()
+}
+function addAndRemove(type, value) {
+    if (value) {
+        this.forEach(elm => elm.classList.add(type))
+    } else {
+        this.forEach(elm => elm.classList.remove(type))
+    }
+}
+function addClick(value) {
+    if (value) {
+        this.forEach(elm => elm.addEventListener("click", turn))
+    } else {
+        this.forEach(elm => elm.removeEventListener("click", turn))
     }
 }
 // RESTART DO JOGO
@@ -89,7 +99,17 @@ document.querySelector("button").onclick = () => {
         elm.classList.remove("hide")
         elm.classList.remove("discovered")
         elm.innerHTML = srcImage(undefined).icon
-        counter = 0
         setInfoSquare.bind(squares)()
+        counter = 0
+    })
+}
+
+
+
+function check() {
+    squares.forEach(elm => {
+        if (elm.classList.contains("discovered")) {
+            console.log(elm)
+        }
     })
 }
