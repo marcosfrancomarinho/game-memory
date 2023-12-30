@@ -76,7 +76,6 @@ function turn() {
     } else {
         counter++
     }
-    check()
 }
 function addAndRemove(type, value) {
     if (value) {
