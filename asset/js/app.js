@@ -104,12 +104,3 @@ document.querySelector("button").onclick = () => {
     })
 }
 
-
-
-function check() {
-    squares.forEach(elm => {
-        if (elm.classList.contains("discovered")) {
-            console.log(elm)
-        }
-    })
-}
