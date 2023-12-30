@@ -47,7 +47,6 @@ function links() {
 const show = function () {
     this.forEach(elm => elm.addEventListener("click", turn))
 }
-
 function turn() {
     this.removeEventListener("click", turn)
     setTimeout(() => {
@@ -85,10 +84,16 @@ function addAndRemove(type, value) {
     }
 }
 function addClick(value) {
+    const filter = []
+    this.forEach(elm => {
+        if (!elm.classList.contains("discovered")) {
+            filter.push(elm)
+        }
+    })
     if (value) {
-        this.forEach(elm => elm.addEventListener("click", turn))
+        filter.forEach(elm => elm.addEventListener("click", turn))
     } else {
-        this.forEach(elm => elm.removeEventListener("click", turn))
+        filter.forEach(elm => elm.removeEventListener("click", turn))
     }
 }
 // RESTART DO JOGO
@@ -99,7 +104,7 @@ document.querySelector("button").onclick = () => {
         elm.classList.remove("discovered")
         elm.innerHTML = srcImage(undefined).icon
         setInfoSquare.bind(squares)()
+        show.bind(squares)()
         counter = 0
     })
 }
-
