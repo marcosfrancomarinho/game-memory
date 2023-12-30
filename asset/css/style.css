@@ -108,7 +108,7 @@ button:hover {
 
     to {
         background-color: var(--raisin-black);
-        transform: rotate3d(0, 1, 0, 180deg);
+        transform: rotate3d(0, 1, 0, 360deg);
     }
 }
 
@@ -118,7 +118,7 @@ button:hover {
     }
 
     to {
-        transform: rotate3d(0, 1, 0, -180deg);
+        transform: rotate3d(0, 1, 0, -360deg);
     }
 }
 
@@ -128,7 +128,7 @@ button:hover {
     }
 
     to {
-        transform: rotate3d(0, 1, 0, -180deg);
+        transform: rotate3d(0, 1, 0, -360deg);
     }
 }
 

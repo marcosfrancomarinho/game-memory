@@ -83,7 +83,6 @@ function turn() {
     }
 }
 // RESTART DO JOGO
-
 document.querySelector("button").onclick = () => {
     squares.forEach(elm => {
         elm.classList.remove("show")
